@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# display all the content from a current directory
+
+for ((i = 1; i <= 100; i++)); do
+	if ((i % 15 == 0)); then echo  "FizzBuzzz";
+	elif ((i % 5 == 0 )); then echo "Buzz";
+	elif ((i % 3 == 0)); then echo "Fizz";
+	else echo "$i";
+	fi
+done
+
