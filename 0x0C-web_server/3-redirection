@@ -9,5 +9,5 @@ redirection_rule="return 301 https://github.com/lawson;"
 
 sudo sed -i "/server_name _;/a \\\tlocation /redirect_me {$redirection_rule}" /etc/nginx/sites-enabled/default
 
-sudo systemctl restart nginx
+sudo service nginx restart
 
