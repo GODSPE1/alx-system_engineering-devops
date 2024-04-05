@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Give me a page!
+#run apache on designated container!
 
 sudo echo "ServiceName localhost"  | sudo tee -a  /etc/apache2.conf
 sudo service apache2 start 
