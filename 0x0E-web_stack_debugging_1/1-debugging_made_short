@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # Configure server to listen to say nginx is not running
 sudo sed -i 's/8080/80/g' /etc/nginx/sites-available/default
-sudo service nginx restart && pkill -o nginx
+sudo service nginx restart
+sudo pkill -o nginx
