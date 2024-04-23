@@ -9,7 +9,7 @@ import sys
 
 
 def main():
-    """de"""
+    """Function of the module that get the username, title and task"""
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         return
@@ -42,8 +42,7 @@ def main():
         if todo['completed']:
             print(f"\t{todo['title']}")
 
-    print(json.dumps(user_tasks, indent=4))
-
 
 if __name__ == "__main__":
     main()
+
