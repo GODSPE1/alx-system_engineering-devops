@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Fecting data for a given employee ID, returns information about
+Fetching data for a given employee ID, returns information about
 his/her TODO list progress.
 """
 import json
@@ -9,7 +9,7 @@ import sys
 
 
 def main():
-    # Checking if the correct number of command-line arguments is provided
+    """de"""
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         return
@@ -36,12 +36,12 @@ def main():
     num_completed_tasks = sum(1 for todo in todos if todo['completed'])
     total_tasks = len(todos)
 
-    print(f"Employee {user['name']} is done with tasks ({num_completed_tasks}/{total_tasks}):")
+    print(f"Employee {user['name']} is done with tasks "
+          f"({num_completed_tasks}/{total_tasks}): ")
     for todo in todos:
         if todo['completed']:
             print(f"\t{todo['title']}")
 
-    # Printing the user_tasks dictionary using json.dump()
     print(json.dumps(user_tasks, indent=4))
 
 
