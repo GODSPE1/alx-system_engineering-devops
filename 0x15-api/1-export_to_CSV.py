@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Fetching data for a given employee ID, returns information about
-his/her TODO list progress.
+his/her Todo list progress.
 """
 import csv
 import json
@@ -44,8 +44,6 @@ def main():
         for todo in todos:
             writer.writerow([user["id"], user["username"],
                              todo["completed"], todo["title"]])
-
-    print(f"Data exported to {filename} successfully!")
 
 
 if __name__ == "__main__":
