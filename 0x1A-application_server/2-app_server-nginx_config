@@ -23,16 +23,21 @@ server {
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
-        server_name 100.26.214.183
+        server_name 100.26.214.183;
 
-         location = /airbnb-onepage/ {
-                proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
-        }
 
         location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
+                proxy_pass http://127.0.0.1:5000;
+                proxy_set_header Host $host;
+
+                # Try serving the request as a file, then as a directory,
+                # and fall back to a 404 error if neither is found.
                 try_files $uri $uri/ =404;
+            }
+
+
+        location /airbnb-onepage/ {
+                proxy_pass http://127.0.0.1:5000/airbnb-onepage;
         }
 
         # pass PHP scripts to FastCGI server
@@ -52,4 +57,4 @@ server {
         #location ~ /\.ht {
         #       deny all;
         #}
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ~                                               
