@@ -2,24 +2,24 @@
 service { 'nginx':
   ensure    => running,
   enable    => true,
-  subscribe => File['/usr/share/nginx/html/index.html'],  # Restart nginx if the index.html file changes
 }
 
-
+# Remove the existing index.html file
 file { '/usr/share/nginx/html/index.html':
   ensure => absent,
-  before => File['/usr/share/nginx/html/new_index.html'],
 }
 
-file { '/usr/share/nginx/html/50x.html':
-  ensure => file,
-  path   => '/usr/share/nginx/html/index.html',
-  require => File['/usr/share/nginx/html/index.html'],
+# Rename 50x.html to index.html
+file { '/usr/share/nginx/html/index.html':
+  ensure  => file,
+  content => file('/usr/share/nginx/html/50x.html'),
+  require => File['/usr/share/nginx/html/index.html'],  # Ensure the index.html is absent before creating new one
+  notify  => Service['nginx'],  # Notify nginx service if this file changes
 }
 
-exec { 'restart_nginx':
-  command     => '/usr/sbin/service nginx restart',
-  refreshonly => true,
-  subscribe   => File['/usr/share/nginx/html/index.html'],
+# Modify max open files limit setting for Nginx and restart Nginx service
+exec { 'modify max open files limit setting':
+  command => 'sed -i "s/15/10000/" /etc/default/nginx && service nginx restart',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',
+  unless  => 'grep -q "10000" /etc/default/nginx',
 }
-
